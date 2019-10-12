@@ -19,16 +19,17 @@ public class Main
         if(returnValue == JFileChooser.APPROVE_OPTION)
         {
             selectedFile = jfc.getSelectedFile();
-            //System.out.println(selectedFile.getAbsolutePath());
+//            System.out.println(selectedFile.getAbsolutePath());
             JOptionPane.showMessageDialog(null, selectedFile.getAbsolutePath());
         }
         
         /*Le o arquivo de entrada*/
+        StringBuilder content = new StringBuilder();
+        
         if(selectedFile != null)
         {
             try(BufferedReader br = new BufferedReader(new FileReader(selectedFile.getAbsolutePath())))
             {
-                StringBuilder content = new StringBuilder();
                 String line;
                 
                 while((line = br.readLine()) != null)
@@ -48,6 +49,12 @@ public class Main
                 JOptionPane.showMessageDialog(null, e.getMessage());
             }
         }
-            
+        
+        /*Organiza o arquivo em variavel*/
+        String[] fields = content.toString().split(System.lineSeparator());
+        for(String linha : fields)
+        {
+            System.out.println(linha);
+        }
     }
 }
