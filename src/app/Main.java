@@ -1,60 +1,20 @@
 package app;
-import java.io.BufferedReader;
+
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
-import javax.swing.filechooser.FileSystemView;
+import dfa.DfaSimulator;
 
 public class Main 
 {
     public static void main(String[] args)
     {
-        /*Abre um FileChooser para selecionar o arquivo de entrada de dados*/
-        JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
-        File selectedFile = null;
-        int returnValue = jfc.showOpenDialog(null);
-        if(returnValue == JFileChooser.APPROVE_OPTION)
-        {
-            selectedFile = jfc.getSelectedFile();
-//            System.out.println(selectedFile.getAbsolutePath());
-            JOptionPane.showMessageDialog(null, selectedFile.getAbsolutePath());
-        }
+        DfaSimulator dfa = new DfaSimulator();
         
-        /*Le o arquivo de entrada*/
-        StringBuilder content = new StringBuilder();
+        /*Selecionando o arquivo contento a tabela de transicao e imprimindo o arquivo*/
+        File tableFile = dfa.selectFile();
+        String[] tableFields = dfa.readFile(tableFile);
         
-        if(selectedFile != null)
-        {
-            try(BufferedReader br = new BufferedReader(new FileReader(selectedFile.getAbsolutePath())))
-            {
-                String line;
-                
-                while((line = br.readLine()) != null)
-                {
-                    content.append(line);
-                    content.append(System.lineSeparator());
-                }
-                
-                JOptionPane.showMessageDialog(null, content.toString());
-            }
-            catch(FileNotFoundException e)
-            {
-                JOptionPane.showMessageDialog(null, e.getMessage());
-            }
-            catch(IOException e)
-            {
-                JOptionPane.showMessageDialog(null, e.getMessage());
-            }
-        }
-        
-        /*Organiza o arquivo em variavel*/
-        String[] fields = content.toString().split(System.lineSeparator());
-        for(String linha : fields)
-        {
-            System.out.println(linha);
-        }
+        /*Selecionando o arquivo contento as strings teste e imprimindo o arquivo*/
+        File stringsFile = dfa.selectFile();
+        String[] stringsFields = dfa.readFile(stringsFile);
     }
 }
