@@ -1,21 +1,13 @@
 package dfa;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
-import javax.swing.filechooser.FileSystemView;
+import app.SimulatorInterface;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class DfaSimulator
+public class DfaSimulator extends fileManager.FileManager implements SimulatorInterface
 {
     private String[] alphabet;
     private String currentState;
@@ -26,6 +18,7 @@ public class DfaSimulator
     private final Map<String, List<String>> transitions = new HashMap<>();
     
     /*Faz com que as strings lidas como entrada sejam organizadas em uma lista*/
+    @Override
     public void organizeInputs(String[] inputs)
     {
         this.inputs.addAll(Arrays.asList(inputs));
@@ -33,6 +26,7 @@ public class DfaSimulator
     
     
     /*Valida se o automato aceita a string ou nao*/
+    @Override
     public void validate()
     {
         StringBuilder sb = new StringBuilder();
@@ -75,6 +69,7 @@ public class DfaSimulator
     }
     
     /*Associa estados e transicoes a variaveis*/
+    @Override
     public void organizeVariables(String[] tableString)
     {
         /*Coloca o alfabeto do automato em inputSimbols*/
@@ -133,81 +128,6 @@ public class DfaSimulator
 //        
 //        for(String key : transitions.keySet())
 //            System.out.println(transitions.get(key));
-    }
-    
-    /*Salvar o arquivo de validacao dos testes*/
-    public void saveFile(String content)
-    {
-        JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
-        int returnValue = jfc.showSaveDialog(null);
-        if(returnValue == JFileChooser.APPROVE_OPTION)
-        {
-            try(FileWriter fw = new FileWriter(jfc.getSelectedFile()+".txt")) {
-                fw.write(content);
-            }
-            catch(IOException e)
-            {
-                JOptionPane.showMessageDialog(null, e.getMessage());
-            }
-        }
-    }
-    
-    /*Seleciona o arquivo de texto atraves de um JFileChooser*/
-    public File selectFile(String dialogTitle)
-    {
-        JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
-        jfc.setDialogTitle("Open " + dialogTitle);
-        File selectedFile = null;
-        int returnValue = jfc.showOpenDialog(null);
-        if(returnValue == JFileChooser.APPROVE_OPTION)
-        {
-            selectedFile = jfc.getSelectedFile();
-            System.out.println(selectedFile.getAbsolutePath());
-//            JOptionPane.showMessageDialog(null, selectedFile.getAbsolutePath());
-        }
-        if(selectedFile != null)
-            return selectedFile;
-        else
-            return null;
-    }
-    
-    /*Le o arquivo texto*/
-    public String[] readFile(File selectedFile)
-    {
-        StringBuilder content = new StringBuilder();
-
-        if(selectedFile != null)
-        {
-            try(BufferedReader br = new BufferedReader(new FileReader(selectedFile.getAbsolutePath())))
-            {
-                String line;
-
-                while((line = br.readLine()) != null)
-                {
-                    content.append(line);
-                    content.append(System.lineSeparator());
-                }
-
-//                JOptionPane.showMessageDialog(null, content.toString());
-            }
-            catch(FileNotFoundException e)
-            {
-                JOptionPane.showMessageDialog(null, e.getMessage());
-            }
-            catch(IOException e)
-            {
-                JOptionPane.showMessageDialog(null, e.getMessage());
-            }
-        }
-
-        /*Organiza o arquivo em variavel*/
-        String[] fields = content.toString().split(System.lineSeparator());
-//        for(String linha : fields)
-//        {
-//            System.out.println(linha);
-//        }
-        
-        return fields;
     }
     
     public List<String> getTransitions(String key)
