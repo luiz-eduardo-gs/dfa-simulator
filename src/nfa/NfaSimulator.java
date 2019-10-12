@@ -1,22 +1,27 @@
 package nfa;
 
 import app.SimulatorInterface;
+import java.util.Arrays;
 
-public class NfaSimulator extends fileManager.FileManager implements SimulatorInterface
+public class NfaSimulator extends app.Simulator implements SimulatorInterface
 {
+    /*Faz com que as strings lidas como entrada sejam organizadas em uma lista*/
     @Override
-    public void organizeInputs(String[] inputs) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void organizeInputs(String[] inputs)
+    {
+        this.inputs.addAll(Arrays.asList(inputs));
     }
-
+    
+    /*Valida se o automato aceita a string ou nao*/
     @Override
     public void validate() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
-
+    
+    /*Associa estados e transicoes a variaveis*/
     @Override
     public void organizeVariables(String[] tableString) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
     
 }

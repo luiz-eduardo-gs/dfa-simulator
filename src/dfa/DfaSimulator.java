@@ -3,20 +3,9 @@ package dfa;
 import app.SimulatorInterface;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
-public class DfaSimulator extends fileManager.FileManager implements SimulatorInterface
-{
-    private String[] alphabet;
-    private String currentState;
-    private final ArrayList<String> inputs = new ArrayList<>();
-    private String initialState;
-    private String[] finalStates;
-    private final ArrayList<String> states = new ArrayList();
-    private final Map<String, List<String>> transitions = new HashMap<>();
-    
+public class DfaSimulator extends app.Simulator implements SimulatorInterface
+{    
     /*Faz com que as strings lidas como entrada sejam organizadas em uma lista*/
     @Override
     public void organizeInputs(String[] inputs)
@@ -129,43 +118,4 @@ public class DfaSimulator extends fileManager.FileManager implements SimulatorIn
 //        for(String key : transitions.keySet())
 //            System.out.println(transitions.get(key));
     }
-    
-    public List<String> getTransitions(String key)
-    {
-        return transitions.get(key);
-    }
-    
-    public String[] getAlphabet() {
-        return alphabet;
-    }
-
-    public void setAlphabet(String[] alphabet) {
-        this.alphabet = alphabet;
-    }
-
-    public String getInitialState() {
-        return initialState;
-    }
-
-    public void setInitialState(String initialState) {
-        this.initialState = initialState;
-    }
-
-    public String[] getFinalStates() {
-        return finalStates;
-    }
-
-    public void setFinalStates(String[] finalStates) {
-        this.finalStates = finalStates;
-    }
-
-    public String getCurrentState() {
-        return currentState;
-    }
-
-    public void setCurrentState(String currentState) {
-        this.currentState = currentState;
-    }
-    
-    
 }

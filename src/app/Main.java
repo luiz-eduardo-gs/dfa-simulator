@@ -26,7 +26,7 @@ public class Main
         /*Selecionando o arquivo contento a tabela de transicao e imprimindo o arquivo*/
         File tableFileNFA = nfa.selectFile("Table File NFA");
         String[] tableFieldsNFA = nfa.readFile(tableFileNFA);
-        //nfa.organizeVariables(tableFieldsNFA);
+        nfa.organizeVariables(tableFieldsNFA);
         
 //        /*Selecionando o arquivo contento as strings teste e imprimindo o arquivo*/
 //        File stringsFileNFA = nfa.selectFile("Strings File");
