@@ -22,7 +22,8 @@ public class Main
             //System.out.println(selectedFile.getAbsolutePath());
             JOptionPane.showMessageDialog(null, selectedFile.getAbsolutePath());
         }
-        /*Le uma linha do arquivo*/
+        
+        /*Le o arquivo de entrada*/
         if(selectedFile != null)
         {
             try(BufferedReader br = new BufferedReader(new FileReader(selectedFile.getAbsolutePath())))
@@ -40,11 +41,11 @@ public class Main
             }
             catch(FileNotFoundException e)
             {
-
+                JOptionPane.showMessageDialog(null, e.getMessage());
             }
             catch(IOException e)
             {
-
+                JOptionPane.showMessageDialog(null, e.getMessage());
             }
         }
             
