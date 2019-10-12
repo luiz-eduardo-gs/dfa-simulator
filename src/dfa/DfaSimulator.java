@@ -36,6 +36,7 @@ public class DfaSimulator
     public void validate()
     {
         StringBuilder sb = new StringBuilder();
+        boolean isValid = false;
         for(String test : inputs)
         {
             sb.append(test).append(": ");
@@ -45,6 +46,10 @@ public class DfaSimulator
             for(String c : test.split(","))
             {
                 currentState = transitions.get(currentState).get(Integer.parseInt(c));
+                if(currentState.equals("{}"))
+                {
+                    break;
+                }
                 System.out.printf(currentState + "->");
                 sb.append(currentState).append("->");
             }
@@ -53,14 +58,17 @@ public class DfaSimulator
             for(String finalState : getFinalStates())
             {
                 if(currentState.equals(finalState)){
+                    isValid = true;
                     System.out.println("ACEITA");
                     sb.append("ACEITA");
                 }
-                else{
-                    System.out.println("NAO ACEITA");
-                    sb.append("NAO ACEITA");
-                }
             }
+            if(!isValid)
+            {
+                System.out.println("NAO ACEITA");
+                sb.append("NAO ACEITA");
+            }
+            isValid = false;
             sb.append(System.lineSeparator());
         }
         saveFile(sb.toString());
@@ -73,7 +81,7 @@ public class DfaSimulator
         setAlphabet(tableString[0].split(","));
         
         /*Coloca o estado inicial do automato em initialState*/
-        setInitialState(tableString[1].replace(">", ""));
+        setInitialState(tableString[1].replace(">", "").trim());
         
         /*Coloca os estados finais do automato em finalStates*/
         setFinalStates(tableString[2].replace("*", "").split(","));
@@ -110,7 +118,7 @@ public class DfaSimulator
         }
         
 //        /*Imprime cada atributo da classe*/
-//        for(String obj : getInputSimbols()){
+//        for(String obj : getAlphabet()){
 //            System.out.printf("Alphabet:" + obj + "\n");
 //        }
 //        
