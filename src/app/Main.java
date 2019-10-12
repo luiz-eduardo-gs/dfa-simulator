@@ -14,8 +14,6 @@ public class Main
         String[] tableFields = dfa.readFile(tableFile);
         dfa.organizeVariables(tableFields);
         
-//        System.out.println(dfa.getTransitions("q3").get(1));
-        
         /*Selecionando o arquivo contento as strings teste e imprimindo o arquivo*/
         File stringsFile = dfa.selectFile("Strings File");
         String[] stringsFields = dfa.readFile(stringsFile);

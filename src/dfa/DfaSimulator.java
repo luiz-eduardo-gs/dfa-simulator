@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -24,7 +25,7 @@ public class DfaSimulator
     private final ArrayList<String> states = new ArrayList();
     private final Map<String, List<String>> transitions = new HashMap<>();
     
-    /*FAz com que as strings lidas como entrada sejam organizadas em uma lista*/
+    /*Faz com que as strings lidas como entrada sejam organizadas em uma lista*/
     public void organizeInputs(String[] inputs)
     {
         this.inputs.addAll(Arrays.asList(inputs));
@@ -34,22 +35,35 @@ public class DfaSimulator
     /*Valida se o automato aceita a string ou nao*/
     public void validate()
     {
+        StringBuilder sb = new StringBuilder();
         for(String test : inputs)
         {
+            sb.append(test).append(": ");
             currentState = getInitialState();
-            System.out.println(currentState);
+            System.out.printf(currentState + "->");
+            sb.append(currentState).append("->");
             for(String c : test.split(","))
             {
                 currentState = transitions.get(currentState).get(Integer.parseInt(c));
-                System.out.println(currentState);     
+                System.out.printf(currentState + "->");
+                sb.append(currentState).append("->");
             }
+            sb.append("  ");
             /*Valida se o automato aceita a string teste*/
             for(String finalState : getFinalStates())
-                if(currentState.equals(finalState))
+            {
+                if(currentState.equals(finalState)){
                     System.out.println("ACEITA");
-                else
+                    sb.append("ACEITA");
+                }
+                else{
                     System.out.println("NAO ACEITA");
+                    sb.append("NAO ACEITA");
+                }
+            }
+            sb.append(System.lineSeparator());
         }
+        saveFile(sb.toString());
     }
     
     /*Associa estados e transicoes a variaveis*/
@@ -111,6 +125,23 @@ public class DfaSimulator
 //        
 //        for(String key : transitions.keySet())
 //            System.out.println(transitions.get(key));
+    }
+    
+    /*Salvar o arquivo de validacao dos testes*/
+    public void saveFile(String content)
+    {
+        JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+        int returnValue = jfc.showSaveDialog(null);
+        if(returnValue == JFileChooser.APPROVE_OPTION)
+        {
+            try(FileWriter fw = new FileWriter(jfc.getSelectedFile()+".txt")) {
+                fw.write(content);
+            }
+            catch(IOException e)
+            {
+                JOptionPane.showMessageDialog(null, e.getMessage());
+            }
+        }
     }
     
     /*Seleciona o arquivo de texto atraves de um JFileChooser*/
