@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Simulator extends fileManager.FileManager
+public class Simulator extends fileManager.FileManager implements SimulatorInterface
 {
     protected String[] alphabet;
     protected String currentState;
@@ -13,11 +13,12 @@ public class Simulator extends fileManager.FileManager
     protected String initialState;
     protected String[] finalStates;
     protected final ArrayList<String> states = new ArrayList();
-    protected final Map<String, List<String>> transitions = new HashMap<>();
+    protected final Map<String, List<String>> transitionsDFA = new HashMap<>();
+    protected final Map<String, List<String>> transitionsNFA = new HashMap<>();
 
     public List<String> getTransitions(String key)
     {
-        return transitions.get(key);
+        return transitionsDFA.get(key);
     }
     
     public String[] getAlphabet() {
@@ -51,4 +52,19 @@ public class Simulator extends fileManager.FileManager
     public void setCurrentState(String currentState) {
         this.currentState = currentState;
     }    
+
+    @Override
+    public void organizeInputs(String[] inputs) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void validate() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void organizeVariables(String[] tableString) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

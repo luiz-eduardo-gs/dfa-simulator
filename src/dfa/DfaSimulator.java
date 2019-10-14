@@ -1,10 +1,9 @@
 package dfa;
 
-import app.SimulatorInterface;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class DfaSimulator extends app.Simulator implements SimulatorInterface
+public class DfaSimulator extends app.Simulator
 {    
     /*Faz com que as strings lidas como entrada sejam organizadas em uma lista*/
     @Override
@@ -12,8 +11,7 @@ public class DfaSimulator extends app.Simulator implements SimulatorInterface
     {
         this.inputs.addAll(Arrays.asList(inputs));
     }
-    
-    
+     
     /*Valida se o automato aceita a string ou nao*/
     @Override
     public void validate()
@@ -28,7 +26,7 @@ public class DfaSimulator extends app.Simulator implements SimulatorInterface
             sb.append(currentState).append("->");
             for(String c : test.split(","))
             {
-                currentState = transitions.get(currentState).get(Integer.parseInt(c));
+                currentState = transitionsDFA.get(currentState).get(Integer.parseInt(c));
                 if(currentState.equals("{}"))
                 {
                     break;
@@ -61,7 +59,7 @@ public class DfaSimulator extends app.Simulator implements SimulatorInterface
     @Override
     public void organizeVariables(String[] tableString)
     {
-        /*Coloca o alfabeto do automato em inputSimbols*/
+        /*Coloca o alfabeto do automato em Alphabet*/
         setAlphabet(tableString[0].split(","));
         
         /*Coloca o estado inicial do automato em initialState*/
@@ -95,10 +93,10 @@ public class DfaSimulator extends app.Simulator implements SimulatorInterface
                 auxList.add(str.split(":")[1]);
             }
         }
-        
+                
         for(int i=0;i<states.size();i++)
         {
-            transitions.put(states.get(i), Arrays.asList(auxList.get(i).split(",")));
+            transitionsDFA.put(states.get(i), Arrays.asList(auxList.get(i).split(",")));
         }
         
 //        /*Imprime cada atributo da classe*/
