@@ -14,7 +14,6 @@ public class Simulator extends fileManager.FileManager implements SimulatorInter
     protected String[] finalStates;
     protected final ArrayList<String> states = new ArrayList();
     protected final Map<String, List<String>> transitionsDFA = new HashMap<>();
-    protected final Map<String, List<String>> transitionsNFA = new HashMap<>();
 
     public List<String> getTransitions(String key)
     {
