@@ -1,6 +1,7 @@
 # DFA_NFA_SIMULATOR
 
 Aluno: Luiz Eduardo Gonçalves Silva
+
 Data: 14/10/2019
 
 Trabalho 01 - LFA 
