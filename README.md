@@ -6,7 +6,14 @@ Data: 14/10/2019
 
 Trabalho 01 - LFA 
 
-Como usar o programa:
+# Requisitos do sistema:
+
+Sistema operacional: Windows (x86) / Windows (x64) / Mac OS / Linux
+    Qualquer sistema operacional que tenha suporte ao Java.
+
+Java: --version 8.x ou superior
+
+# Como usar o programa:
 
 0) Execute o .jar, contido na pasta: "dist" na raiz deste projeto.
 
