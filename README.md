@@ -54,9 +54,7 @@ Cada caracter da string deve estar separado por vírgula e cada string diferente
 Ex.:
 
     0,1 - equivalente a 01
-
     0,1,0,1,0,1,0,0 - equivalente a 01010100
-
     0 - equivalente a 0
 
 
@@ -71,9 +69,6 @@ String teste: transições -> ACEITA/NAO ACEITA
 Ex.:
 
     1,0,1: q0->q1->q2->  NAO ACEITA
-
     0,0,1: q0->q1->q2->  NAO ACEITA
-
     1,0,1,0,1,0,1,0,1,0,1: q0->q1->q2->  NAO ACEITA
-
     0,1,0,0,0,1,0,0,1: q0->q1->q2->  NAO ACEITA
