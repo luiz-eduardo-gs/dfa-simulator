@@ -12,10 +12,10 @@ import javax.swing.filechooser.FileSystemView;
 
 public class FileManager
 {
-        /*Salvar o arquivo de validacao dos testes*/
     public void saveFile(String content)
     {
         JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+        jfc.setDialogTitle("Salvar resultado");
         int returnValue = jfc.showSaveDialog(null);
         if(returnValue == JFileChooser.APPROVE_OPTION)
         {
