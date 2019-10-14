@@ -8,9 +8,8 @@ Trabalho 01 - LFA
 
 # Requisitos do sistema:
 
-Sistema operacional: Windows (x86) / Windows (x64) / Mac OS / Linux
+Sistema operacional: Windows (x86) / Windows (x64) / Mac OS / Linux (Qualquer sistema operacional que tenha suporte ao Java)
 
-    Qualquer sistema operacional que tenha suporte ao Java.
 
 Java: --version 8.x ou superior
 
@@ -78,6 +77,7 @@ A saída será um arquivo .txt no seguinte formato:
 String teste: transições -> ACEITA/NAO ACEITA
 
 Ex.:
+
     1,0,1: q0->q1->q2->  NAO ACEITA
 
     0,0,1: q0->q1->q2->  NAO ACEITA
