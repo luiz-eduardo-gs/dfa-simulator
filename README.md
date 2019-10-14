@@ -9,6 +9,7 @@ Trabalho 01 - LFA
 # Requisitos do sistema:
 
 Sistema operacional: Windows (x86) / Windows (x64) / Mac OS / Linux
+
     Qualquer sistema operacional que tenha suporte ao Java.
 
 Java: --version 8.x ou superior
@@ -36,23 +37,37 @@ Obs.: Estados que não possuem transição para dado símbolo do alfabeto devem 
 Nome do estado:{},Estado atingível lendo o 2 símbolo do alfabeto
 
 Ex.:
+
     0,1 - símbolos do alfabeto
+
     >q0 - estado inicial
+
     *q0,*q1 - estados final
+
     q0:q2,q1 - estado q0, lendo 0, vai para q2. Lendo 1, vai para q1
+
     q1:q3,q0
+
     q2:q3,q3
+
     q3:q1,q2
+
     q4:{},q2
+
     q5:{},{}
+
 
 O arquivo que contém as strings teste deve estar no seguinte formato:
 Cada caracter da string deve estar separado por vírgula e cada string diferente deve estar na linha inferior à antecessora.
 
 Ex.:
+
     0,1 - equivalente a 01
+
     0,1,0,1,0,1,0,0 - equivalente a 01010100
+
     0 - equivalente a 0
+
 
 Na pasta 'exemplos_arq_entradas', há alguns exemplos de inputs de tabelas e strings teste.
 
@@ -64,6 +79,9 @@ String teste: transições -> ACEITA/NAO ACEITA
 
 Ex.:
     1,0,1: q0->q1->q2->  NAO ACEITA
+
     0,0,1: q0->q1->q2->  NAO ACEITA
+
     1,0,1,0,1,0,1,0,1,0,1: q0->q1->q2->  NAO ACEITA
+
     0,1,0,0,0,1,0,0,1: q0->q1->q2->  NAO ACEITA
