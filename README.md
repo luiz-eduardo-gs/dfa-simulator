@@ -38,21 +38,13 @@ Nome do estado:{},Estado atingível lendo o 2 símbolo do alfabeto
 Ex.:
 
     0,1 - símbolos do alfabeto
-
     >q0 - estado inicial
-
     *q0,*q1 - estados final
-
     q0:q2,q1 - estado q0, lendo 0, vai para q2. Lendo 1, vai para q1
-
     q1:q3,q0
-
     q2:q3,q3
-
     q3:q1,q2
-
     q4:{},q2
-
     q5:{},{}
 
 
